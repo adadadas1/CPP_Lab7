@@ -2,6 +2,7 @@
 
 #include <boost/crc.hpp>
 #include <boost/uuid/detail/md5.hpp>
+#include <cstdint>
 #include <stdexcept>
 
 // CRC32 через boost::crc_32_type
