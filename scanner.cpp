@@ -12,12 +12,12 @@ namespace fs = boost::filesystem;
 static boost::regex maskToRegex(const std::string& mask)
 {
     std::string pattern;
-    for (char c : mask) {
-        if (c == '*')      pattern += ".*";
-        else if (c == '?') pattern += ".";
-        else if (std::string(".^$+{}[]|()/\\").find(c) != std::string::npos)
-            pattern += std::string("\\") + c;
-        else               pattern += c;
+    for (char ch : mask) {
+        if (ch == '*')      pattern += ".*";
+        else if (ch == '?') pattern += ".";
+        else if (std::string(".^$+{}[]|()/\\").find(ch) != std::string::npos)
+            pattern += std::string("\\") + ch;
+        else               pattern += ch;
     }
     // Маска применяется к имени без учёта регистра
     return boost::regex(pattern, boost::regex::icase);
@@ -34,7 +34,6 @@ static bool matchesMasks(const std::string& filename,
     return false;
 }
 
-// Читаем блок idx из файла и возвращаем его хеш
 const std::string& FileEntry::blockHash(std::size_t idx) const
 {
     if (hashes[idx].empty()) {
